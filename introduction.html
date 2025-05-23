@@ -43,6 +43,49 @@
 
 
 </style>
+<style>
+.hamburger {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  z-index: 1100;
+}
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  background: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+.mobile-menu a {
+  padding: 12px 20px;
+  text-decoration: none;
+  color: #333;
+  border-bottom: 1px solid #eee;
+}
+.mobile-menu a:last-child {
+  border-bottom: none;
+}
+@media (max-width: 768px) {
+  nav {
+    display: none;
+  }
+  .hamburger {
+    display: block;
+  }
+  .mobile-menu {
+    width: 180px;
+    right: 10px;
+  }
+}
+</style>
 
 <body style="align-content: center;">
     <header>
@@ -60,11 +103,14 @@
             <span class="divider">|</span>
             <a href="contact.html">Contact</a>
         </nav>
-  <div class="hamburger" id="hamburger">
-    ☰
-  </div>
-        
-    </header>
+    <div class="hamburger" id="hamburger">&#9776;</div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="introduction.html">Introduction</a>
+      <a href="resume.html">Resume</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </header>
 
     <main>
         
@@ -92,6 +138,18 @@
             <p>&copy; 2025 Swagat Bhoir. All rights reserved.</p>
         </div>
     </footer>
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.onclick = function() {
+    mobileMenu.style.display = mobileMenu.style.display === 'flex' ? 'none' : 'flex';
+  };
+  document.addEventListener('click', function(e) {
+    if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+      mobileMenu.style.display = 'none';
+    }
+  });
+</script>
 </body>
 
 </html>
